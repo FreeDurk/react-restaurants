@@ -7,16 +7,16 @@ function App() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    setRestaurants(data);
-    // axios
-    //   .get(apiUrl)
-    //   .then((response) => {
-    //     setRestaurants(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data:", error);
-    //   });
-  }, [data]);
+    // setRestaurants(data);
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setRestaurants(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const groupRestaurantsByState = () => {
     const groupedRestaurants = {};
