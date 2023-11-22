@@ -2,19 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
+  var data = require("./restaurants.json");
   const apiUrl = "/api/restaurants";
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setRestaurants(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+    setRestaurants(data);
+    // axios
+    //   .get(apiUrl)
+    //   .then((response) => {
+    //     setRestaurants(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching data:", error);
+    //   });
+  }, [data]);
 
   const groupRestaurantsByState = () => {
     const groupedRestaurants = {};
@@ -26,7 +28,6 @@ function App() {
       }
       groupedRestaurants[state].push(restaurant);
     });
-    console.log(groupedRestaurants);
     return groupedRestaurants;
   };
 
